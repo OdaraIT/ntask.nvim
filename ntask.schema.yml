@@ -1,0 +1,20 @@
+# ntask.schema.yml - Definição do schema para o .ntask.yml
+project:
+  type: string
+  description: "Nome do projeto padrão para as tarefas"
+  default: "General"
+tags:
+  type: array
+  description: "Lista de tags padrão para as tarefas"
+  items:
+    type: string
+  default: []
+priority:
+  type: string
+  description: "Prioridade padrão da tarefa (H = Alta, M = Média, L = Baixa)"
+  enum: ["H", "M", "L"]
+  default: "M"
+duedate:
+  type: string
+  description: "Prazo padrão para novas tarefas (Ex: '+3d', 'tomorrow', '2025-03-01')"
+  default: "+3d"
