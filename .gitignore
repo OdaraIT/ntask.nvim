@@ -1,0 +1,28 @@
+# Diretório de dependências do Neovim
+.nvim
+
+# Arquivos temporários e de build
+*.swp
+*.swo
+*.swn
+*.bak
+*.tmp
+
+# Arquivos Lua compilados
+*.luac
+
+# Diretórios do Luarocks (caso use)
+luarocks/
+luac.out
+
+# Diretórios de configuração locais
+local/
+env/
+*.log
+
+# Metadados do Git
+.DS_Store
+.idea/
+.vscode/
+*.orig
+
