@@ -79,19 +79,19 @@ require('ntask').setup({
 | `:TaskDelete` | Delete a task (with confirmation) |
 | `:TaskEdit`   | Edit task details                 |
 
-## 🔧 Project Configuration (`.ntask.yml`)
+## 🔧 Project Configuration (`.ntask.json`)
 
-ntask.nvim allows you to define project-specific defaults using a `.ntask.yml` file in the root of your project. This file can specify default values for:
+ntask.nvim allows you to define project-specific defaults using a `.ntask.json` file in the root of your project. This file can specify default values for:
 
-Example `.ntask.yml`:
+Example `.ntask.json`:
 
-```yaml
-project: "MyProject"
-tags:
-  - dev
-  - feature
-priority: "M"
-duedate: "+3d"
+```json
+{
+  "project": "MyProject",
+  "tags": ["dev", "feature"],
+  "priority": "M",
+  "duedate": "+3d"
+}
 ```
 
 ### Supported Fields:
@@ -101,7 +101,7 @@ duedate: "+3d"
 - **`priority`**: Default priority (`H`, `M`, or `L`).
 - **`duedate`**: Default due date (e.g., `+3d` for 3 days from today).
 
-If no `.ntask.yml` is found, default values will be used.
+If no `.ntask.json` is found, default values will be used.
 
 ## 🛠 Dependencies
 

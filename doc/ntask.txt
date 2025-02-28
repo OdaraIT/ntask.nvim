@@ -1,4 +1,4 @@
-*ntask.nvim*
+*Ntask.nvim*
 
 Taskwarrior integration for Neovim
 

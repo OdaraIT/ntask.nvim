@@ -1,6 +1,5 @@
--- config.lua - Carregamento e validação do .ntask.yml
-
-local yaml = require('lyaml')
+local config = {}
+local plenary_path = require('plenary.path')
 
 local schema = {
   project = { type = 'string', default = 'General' },
@@ -8,8 +7,6 @@ local schema = {
   priority = { type = 'string', enum = { 'H', 'M', 'L' }, default = 'M' },
   duedate = { type = 'string', default = '+3d' },
 }
-
-local config = {}
 
 local function validate_config(parsed)
   local validated = {}
@@ -39,12 +36,12 @@ local function validate_config(parsed)
 end
 
 function config.load()
-  local config_path = vim.fn.getcwd() .. '/.ntask.yml'
-  local file = io.open(config_path, 'r')
-  if file then
-    local content = file:read('*a')
-    file:close()
-    local success, parsed = pcall(yaml.load, content)
+  local config_path = vim.fn.getcwd() .. '/.ntask.json'
+  local file = plenary_path.new(config_path)
+
+  if file:exists() then
+    local content = file:read()
+    local success, parsed = pcall(vim.json.decode, content)
     if success and type(parsed) == 'table' then
       config = validate_config(parsed)
     else
