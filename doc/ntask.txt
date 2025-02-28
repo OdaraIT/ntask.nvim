@@ -1,9 +1,9 @@
 *ntask.nvim*
 
-ntask.nvim - Taskwarrior integration for Neovim
+Taskwarrior integration for Neovim
 
 -------------------------------------------------------------------------------
-*ntask.nvim* provides seamless **Taskwarrior** integration within Neovim, allowing users to manage their tasks without leaving the editor.
+*NTask* provides seamless **Taskwarrior** integration within Neovim, allowing users to manage their tasks without leaving the editor.
 
 COMMANDS:
 
@@ -15,7 +15,7 @@ COMMANDS:
   
 CONFIGURATION:
 
-  ntask.nvim allows users to set default configurations for tasks using a `.ntask.yml` file in the root of their project.
+  NTask allows users to set default configurations for tasks using a `.ntask.yml` file in the root of their project.
 
   Example `.ntask.yml`:
 
@@ -30,7 +30,7 @@ CONFIGURATION:
 
 SETUP:
 
-  ntask.nvim supports a `setup()` function for user configuration.
+  NTask supports a `setup()` function for user configuration.
 
   Example:
 
