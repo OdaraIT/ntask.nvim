@@ -1,18 +1,19 @@
-local M = {}
+local main = require('ntask.main')
+local config = require('ntask.config')
 
-M.config = require('ntask.config')
-M.commands = require('ntask.commands')
-M.health = require('ntask.health')
+local NTask = {}
 
--- Atalho para adicionar tarefa
-vim.api.nvim_set_keymap(
-  'n',
-  '<leader>tk',
-  ':lua require\'ntask.commands\'.add_task()<CR>',
-  { noremap = true, silent = true }
-)
+-- Setup function for user configurations
+function NTask.setup(opts)
+  _G.NTaskConfig = config.setup(opts)
+end
 
--- Função de checkhealth
-M.checkhealth = M.health.run_check
+-- Run health check
+function NTask.checkhealth()
+  require('ntask.health').run_check()
+end
 
-return M
+-- Register NTask globally
+_G.NTask = NTask
+
+return _G.NTask
