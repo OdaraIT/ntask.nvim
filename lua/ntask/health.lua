@@ -1,5 +1,3 @@
--- health.lua - Checkhealth for ntask.nvim
-
 local health = {}
 local vim_health = require('health')
 

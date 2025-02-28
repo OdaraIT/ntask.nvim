@@ -1,5 +1,3 @@
--- commands.lua - Functions to manage tasks in Taskwarrior
-
 local commands = {}
 local config = require('ntask.config')
 local pickers = require('telescope.pickers')
