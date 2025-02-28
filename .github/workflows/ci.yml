@@ -1,5 +1,4 @@
 name: Run Tests
-
 on:
   push:
     branches:
@@ -7,29 +6,41 @@ on:
   pull_request:
     branches:
       - main
-
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
       - name: Install dependencies
         run: |
           sudo apt update
-          sudo apt install -y taskwarrior
-
+          sudo apt install -y taskwarrior curl unzip
       - name: Install Neovim
         uses: rhysd/action-setup-vim@v1
         with:
           neovim: true
-
+      - name: Install vim-plug
+        run: |
+          curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+            https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+      - name: Install Neovim plugins
+        run: |
+          mkdir -p ~/.config/nvim
+          echo "call plug#begin('~/.vim/plugged')" > ~/.config/nvim/init.vim
+          echo "Plug 'nvim-lua/plenary.nvim'" >> ~/.config/nvim/init.vim
+          echo "Plug 'nvim-telescope/telescope.nvim'" >> ~/.config/nvim/init.vim
+          echo "call plug#end()" >> ~/.config/nvim/init.vim
+          nvim --headless +PlugInstall +qall
+      - name: Install Stylua for linting
+        run: |
+          curl -sSLf https://github.com/JohnnyMorganz/StyLua/releases/latest/download/stylua-linux-x86_64.zip -o stylua.zip
+          unzip stylua.zip -d stylua
+          sudo mv stylua/stylua /usr/local/bin/
+          chmod +x /usr/local/bin/stylua
       - name: Run Makefile tasks
         run: |
           make deps
           make install_plugins
           make lint
           make test
-
