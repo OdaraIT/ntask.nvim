@@ -1,0 +1,137 @@
+*ntask.nvim*
+
+ntask.nvim - Taskwarrior integration for Neovim
+
+-------------------------------------------------------------------------------
+*ntask.nvim* provides seamless **Taskwarrior** integration within Neovim, allowing users to manage their tasks without leaving the editor.
+
+COMMANDS:
+
+  :TaskAdd       - Add a new task
+  :TaskList      - List pending tasks from the current project
+  :TaskDone      - Mark a task as completed
+  :TaskDelete    - Delete a task (requires confirmation)
+  :TaskEdit      - Edit an existing task
+  
+CONFIGURATION:
+
+  ntask.nvim allows users to set default configurations for tasks using a `.ntask.yml` file in the root of their project.
+
+  Example `.ntask.yml`:
+
+>   project: "MyProject"
+>   tags:
+>     - dev
+>     - feature
+>   priority: "M"
+>   duedate: "+3d"
+
+  If no `.ntask.yml` is found, default values will be used.
+
+SETUP:
+
+  ntask.nvim supports a `setup()` function for user configuration.
+
+  Example:
+
+>   require('ntask').setup({
+>     project = "MyProject",
+>     tags = { "work", "urgent" },
+>     priority = "H",
+>     duedate = "+1d"
+>   })
+
+  Available options:
+
+  | Option       | Default   | Description |
+  |-------------|-----------|-------------|
+  | `project`   | `General` | Default project name for tasks |
+  | `tags`      | `{}`      | List of default tags for new tasks |
+  | `priority`  | `M`       | Default priority (`H`, `M`, or `L`) |
+  | `duedate`   | `+3d`     | Default due date for new tasks |
+
+DEPENDENCIES:
+
+  This plugin requires the following dependencies:
+
+  - **Taskwarrior** (Required)
+  - **Telescope.nvim** (Required for listing tasks)
+  - **Plenary.nvim** (Required for utility functions)
+
+INSTALLATION:
+
+  Using **packer.nvim**:
+
+>   use {
+>     'OdaraIT/ntask.nvim',
+>     requires = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim' },
+>     config = function()
+>       require('ntask').setup({})
+>     end
+>   }
+
+  Using **vim-plug**:
+
+>   Plug 'nvim-lua/plenary.nvim'
+>   Plug 'nvim-telescope/telescope.nvim'
+>   Plug 'OdaraIT/ntask.nvim'
+
+  Using **lazy.nvim**:
+
+>   {
+>     'OdaraIT/ntask.nvim',
+>     dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim' },
+>     config = function()
+>       require('ntask').setup({})
+>     end
+>   }
+
+USAGE:
+
+  1. **Add a new task**:
+     ```vim
+     :TaskAdd
+     ```
+     Follow the prompt to enter a task description.
+
+  2. **List pending tasks**:
+     ```vim
+     :TaskList
+     ```
+     Opens an interactive list of pending tasks using Telescope.
+
+  3. **Mark a task as completed**:
+     ```vim
+     :TaskDone
+     ```
+     Enter the task ID to mark it as done.
+
+  4. **Delete a task**:
+     ```vim
+     :TaskDelete
+     ```
+     Enter the task ID to delete (confirmation required).
+
+  5. **Edit a task**:
+     ```vim
+     :TaskEdit
+     ```
+     Modify the details of an existing task.
+
+HELP:
+
+  To check if all dependencies are correctly installed, run:
+  ```vim
+  :checkhealth ntask.nvim
+  ```
+
+AUTHOR:
+
+  ntask.nvim is developed and maintained by **OdaraIT**. Contributions are welcome!
+
+LICENSE:
+
+  This plugin is licensed under the MIT License.
+
+-------------------------------------------------------------------------------
+

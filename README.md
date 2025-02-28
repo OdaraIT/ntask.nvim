@@ -20,7 +20,7 @@ use {
   'OdaraIT/ntask.nvim',
   requires = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim' },
   config = function()
-    require('ntask')
+    require('ntask').setup({})
   end
 }
 ```
@@ -40,10 +40,34 @@ Plug 'OdaraIT/ntask.nvim'
   'OdaraIT/ntask.nvim',
   dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope.nvim' },
   config = function()
-    require('ntask')
+    require('ntask').setup({})
   end
 }
 ```
+
+## ⚙️ Setup Configuration
+
+ntask.nvim now supports a `setup()` function for user configuration.
+
+Example:
+
+```lua
+require('ntask').setup({
+  project = "MyProject",
+  tags = { "work", "urgent" },
+  priority = "H",
+  duedate = "+1d"
+})
+```
+
+### Available Options:
+
+| Option     | Default   | Description                         |
+| ---------- | --------- | ----------------------------------- |
+| `project`  | `General` | Default project name for tasks      |
+| `tags`     | `{}`      | List of default tags for new tasks  |
+| `priority` | `M`       | Default priority (`H`, `M`, or `L`) |
+| `duedate`  | `+3d`     | Default due date for new tasks      |
 
 ## ⚙️ Commands
 
